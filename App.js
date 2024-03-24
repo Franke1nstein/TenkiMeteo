@@ -14,7 +14,7 @@ const SearchBar = ({ query, setQuery, onSearch }) => (
     />
     <TouchableOpacity style={styles.searchButton} onPress={() => onSearch(query)}>
       <Image
-        source={require('./assets/search-white.png')} 
+        source={require('./assets/search_icon.png')} 
         style={styles.searchIcon}
       />
     </TouchableOpacity>
