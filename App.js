@@ -24,17 +24,19 @@ const SearchBar = ({ query, setQuery, onSearch }) => (
 const WeatherDisplay = ({ weather, error }) => {
   if (error) {
     return <Text style={styles.errorText}>{error.message}: {error.query}</Text>;}
-  if (!weather.main) return null; // Handle no weather data
+  if (!weather.main) return error; // Handle no weather data
 
   const temperature = Math.round(weather.main.temp);
+  const feelsLike = Math.round(weather.main.feels_like);
+  const windSpeed = (weather.wind.speed * 3.6).toFixed(3);
   return (
     <View style={styles.weatherDisplay}>
       <Text style={styles.cityText}>{weather.name}</Text>
       <Text style={styles.descriptionText}>{weather.weather[0].description}</Text>
       <Text style={styles.temperatureText}>{temperature}°C</Text>
-      <Text style={styles.feelsLikeText}>Feels like: {Math.round(weather.main.feels_like)}°C</Text>
+      <Text style={styles.feelsLikeText}>Feels like: {feelsLike}°C</Text>
       <Text style={styles.humidityText}>Humidity: {weather.main.humidity}%</Text>
-      <Text style={styles.windText}>Wind speed: {weather.wind.speed.toFixed(3)*3.6} Km/h</Text>
+      <Text style={styles.windText}>Wind speed: {windSpeed} Km/h</Text>
       {/* Add more weather info display logic here */}
     </View>
   );
