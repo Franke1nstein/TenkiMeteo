@@ -117,26 +117,42 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   weatherDisplay: {
+    backgroundColor: '#fff', // White background
+    borderRadius: 10, // Rounded corners
+    padding: 20, // Padding for content
+    alignItems: 'center', // Center content horizontally
+    marginBottom: 20, // Margin for spacing
+    shadowColor: '#000', // Shadow color
+    shadowOffset: { width: 0, height: 2 }, // Shadow offset
+    shadowOpacity: 0.2, // Shadow opacity
+    shadowRadius: 4, // Shadow blur radius
     // Add styles for weather display elements here
   },
   cityText: {
     fontSize: 25,
     fontWeight: 'bold',
+    marginBottom: 10,
   },
   temperatureText: {
     fontSize: 30,
+    color: '#f00',
   },
   descriptionText: {
-    fontSize: 25,
+    fontSize: 20,
+    marginBottom: 15,
+    fontStyle: 'italic',
   },
   feelsLikeText: {
     fontSize: 15,
+    marginBottom: 5,
   },
   humidityText: {
     fontSize: 15,
+    marginBottom: 5,
   },
   windText: {
     fontSize: 15,
+    marginBottom: 5,
   },
 });
 
