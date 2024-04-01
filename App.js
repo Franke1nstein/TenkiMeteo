@@ -1,9 +1,12 @@
+// Import necessary React components and styling library
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
+// Define API key and base URL for weather data fetching
 const API_KEY = 'fb2051e6bea60e62815de5e9a3a6869e'; 
 const BASE_URL = 'https://api.openweathermap.org/data/2.5/';
 
+// SearchBar component for user input and search 
 const SearchBar = ({ query, setQuery, onSearch }) => (
   <View style={styles.searchBarContainer}>
     <TextInput
@@ -21,32 +24,33 @@ const SearchBar = ({ query, setQuery, onSearch }) => (
   </View>
 );
 
+// WeatherDisplay component to display weather information or error messages
 const WeatherDisplay = ({ weather, error }) => {
   if (error) {
     return <Text style={styles.errorText}>{error.message}: {error.query}</Text>;}
-  if (!weather.main) return error; // Handle no weather data
+  if (!weather.main) return null; // Handle no weather data
 
   const temperature = Math.round(weather.main.temp);
-  const feelsLike = Math.round(weather.main.feels_like);
-  const windSpeed = (weather.wind.speed * 3.6).toFixed(3);
   return (
     <View style={styles.weatherDisplay}>
       <Text style={styles.cityText}>{weather.name}</Text>
       <Text style={styles.descriptionText}>{weather.weather[0].description}</Text>
       <Text style={styles.temperatureText}>{temperature}°C</Text>
-      <Text style={styles.feelsLikeText}>Feels like: {feelsLike}°C</Text>
+      <Text style={styles.feelsLikeText}>Feels like: {Math.round(weather.main.feels_like)}°C</Text>
       <Text style={styles.humidityText}>Humidity: {weather.main.humidity}%</Text>
-      <Text style={styles.windText}>Wind speed: {windSpeed} Km/h</Text>
+      <Text style={styles.windText}>Wind speed: {weather.wind.speed.toFixed(3)*3.6} Km/h</Text>
       {/* Add more weather info display logic here */}
     </View>
   );
 };
 
+// Main App component that manages state and renders the UI
 const App = () => {
   const [query, setQuery] = useState('');
   const [error, setError] = useState('');
   const [weather, setWeather] = useState({});
-
+  
+  // Function to handle search logic and fetch weather data
   const handleSearch = async (city) => {
     try {
       const response = await fetch(`${BASE_URL}weather?q=${city}&units=metric&APPID=${API_KEY}`);
@@ -79,6 +83,7 @@ const App = () => {
   );
 };
 
+// Stylesheet for UI components
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -103,6 +108,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 16,
     padding: 5,
+    borderBlockColor: 'red',
   },
   searchButton: {
     padding: 10,
@@ -117,43 +123,39 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   weatherDisplay: {
-    backgroundColor: '#fff', // White background
+    backgroundColor: 'blue',
     borderRadius: 10, // Rounded corners
-    padding: 20, // Padding for content
-    alignItems: 'center', // Center content horizontally
-    marginBottom: 20, // Margin for spacing
+    padding: 20, 
+    alignItems: 'center', 
+    marginBottom: 20, 
     shadowColor: '#000', // Shadow color
     shadowOffset: { width: 0, height: 2 }, // Shadow offset
-    shadowOpacity: 0.2, // Shadow opacity
+    shadowOpacity: 0.2, 
     shadowRadius: 4, // Shadow blur radius
     // Add styles for weather display elements here
+  
   },
   cityText: {
     fontSize: 25,
     fontWeight: 'bold',
-    marginBottom: 10,
   },
   temperatureText: {
     fontSize: 30,
-    color: '#f00',
   },
   descriptionText: {
-    fontSize: 20,
-    marginBottom: 15,
-    fontStyle: 'italic',
+    fontSize: 25,
   },
   feelsLikeText: {
     fontSize: 15,
-    marginBottom: 5,
   },
   humidityText: {
     fontSize: 15,
-    marginBottom: 5,
   },
   windText: {
     fontSize: 15,
-    marginBottom: 5,
   },
 });
 
     export default App;
+
+
