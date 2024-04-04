@@ -5,16 +5,17 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    marginBottom:50,
   },
   logo:{
     flex: 1,
-    resizeMode: 'center', // Resize to cover container
-    width : '100%',
+    resizeMode: 'center', 
     marginTop : 20,
   },
   heading:{
     fontSize: 25,
     fontWeight: 'bold',
+    justifyContent: 'center',
   },
   description:{
     fontSize: 15,
