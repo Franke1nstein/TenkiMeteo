@@ -1,6 +1,6 @@
 // Import necessary React components and styling library
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, ImageBackground } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, ImageBackground, ActivityIndicator } from 'react-native';
 
 
 // Define API key and base URL for weather data fetching
@@ -51,6 +51,7 @@ const CurrentWeather = () => {
   const [query, setQuery] = useState('');
   const [error, setError] = useState('');
   const [weather, setWeather] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
   const [backgroundImage, setBackgroundImage] = useState(require('../assets/images/Background.jpg'));
 
     // Function to update background image based on weather description
@@ -96,10 +97,11 @@ const CurrentWeather = () => {
   // Function to handle search logic and fetch weather data
   const handleSearch = async (city) => {
     try {
+      setIsLoading(true); 
       const response = await fetch(`${BASE_URL}weather?q=${city}&units=metric&APPID=${API_KEY}`);
       const data = await response.json();
-      //console.log("API data:", data);
       setWeather(data);
+      setIsLoading(false);
       setQuery('');
     } catch (error) {
       console.log(error);
@@ -117,15 +119,19 @@ const CurrentWeather = () => {
   return (
     <View style={styles.container}>
       <Image
-        source={backgroundImage} // Use backgroundImage state for dynamic background
+        source={backgroundImage}
         style={styles.backgroundImage}
         resizeMode='cover'
-    />
-    <View style={styles.container}>
-      <SearchBar query={query} setQuery={setQuery} onSearch={handleSearch} />
-      {error.message && <Text style={styles.errorText}>{error.message}: {error.query}</Text>}
-      {weather.main && <WeatherDisplay weather={weather} error={error} />}
-    </View>
+      />
+      <View style={styles.container}>
+        <SearchBar query={query} setQuery={setQuery} onSearch={handleSearch} />
+        {error.message && <Text style={styles.errorText}>{error.message}: {error.query}</Text>}
+        {isLoading ? (
+          <ActivityIndicator size="large" color="#0000ff" style={styles.loader} /> // Using ActivityIndicator here
+        ) : (
+          weather.main && <WeatherDisplay weather={weather} error={error} />
+        )}
+      </View>
     </View>
   );
 };
@@ -171,7 +177,7 @@ const styles = StyleSheet.create({
   },
   weatherDisplay: {
     
-    backgroundColor: '#00ffff', // Uncomment for blue background
+    backgroundColor: '#00ffff', 
     borderRadius: 10,
     padding: 20,
     marginBottom: 20,

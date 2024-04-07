@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TextInput, ScrollView, Button } from 'react-native';
+import { View, Text, StyleSheet, TextInput, ScrollView, Button, ActivityIndicator } from 'react-native';
 
-const API_KEY = 'fb2051e6bea60e62815de5e9a3a6869e'; // Replace with your OpenWeatherMap API key
+// Define API key and base URL for weather data fetching
+const API_KEY = 'fb2051e6bea60e62815de5e9a3a6869e'; // Replace with your valid API key
+const BASE_URL = 'https://api.openweathermap.org/data/2.5/';
 
 const Forecast = () => {
   const [city, setCity] = useState('');
@@ -47,7 +49,7 @@ const Forecast = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={styles.forecastContainer}>
       <TextInput
         value={city}
         onChangeText={setCity}
@@ -56,7 +58,9 @@ const Forecast = () => {
       />
       <Button title="Search" onPress={handleSearch} disabled={isLoading} />
 
-      {isLoading && <Text style={styles.loadingText}>Loading...</Text>}
+      {isLoading && (
+        <ActivityIndicator size="large" color="#0000ff" style={styles.loader} />
+      )}
       {error && <Text style={styles.errorText}>{error}</Text>}
       {weatherData.length > 0 && (
         <ScrollView style={styles.scrollView}>
@@ -67,15 +71,15 @@ const Forecast = () => {
   );
 };
 
-
 const styles = StyleSheet.create({
-  container: {
+  forecastContainer: {
     flex: 1,
     padding: 20,
   },
-  loadingText: {
-    fontSize: 18,
-    textAlign: 'center',
+  loader: {
+    marginTop: 20,
+    marginBottom: 20,
+    alignSelf: 'center',
   },
   errorText: {
     fontSize: 18,
