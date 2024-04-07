@@ -168,7 +168,6 @@ const styles = StyleSheet.create({
   errorText: {
     color: 'red',
     fontSize: 15,
-    marginBottom: 20,
   },
   weatherDisplay: {
     
