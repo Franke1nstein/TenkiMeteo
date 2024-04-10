@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet, ImageBackground, ActivityIndicator } from 'react-native';
 
 
+
 // Define API key and base URL for weather data fetching
 const API_KEY = 'fb2051e6bea60e62815de5e9a3a6869e'; 
 const BASE_URL = 'https://api.openweathermap.org/data/2.5/';
@@ -58,35 +59,40 @@ const CurrentWeather = () => {
     const handleWeatherChange = (weather) => {
       const description = weather?.weather?.[0]?.description?.toLowerCase(); // Use optional chaining
       if (!description) return;
-      const imageMap = {
+      const gifMap = {
         // Map weather descriptions to appropriate Img
-          'rainy': require('../assets/DescriptImg/rainy.png'),
-          'cloudy': require('../assets/DescriptImg/cloudy.png'),
-          'sunny': require('../assets/DescriptImg/sunny.png'),
-          'overcast clouds': require('../assets/DescriptImg/overcast clouds.jpg'),
-          'clear sky': require('../assets/DescriptImg/ClearSky.jpg'),
-          'few clouds': require('../assets/DescriptImg/ClearSky.jpg'),
-          'scattered clouds': require('../assets/DescriptImg/scattered clouds.jpg'),
-          'broken clouds': require('../assets/DescriptImg/broken clouds.jpg'),
-          'overcast clouds': require('../assets/DescriptImg/overcast sky.png'),
-          'mist': require('../assets/DescriptImg/mist.jpg'),
-          'smoke': require('../assets/DescriptImg/smoke.jpg'),
-          'haze': require('../assets/DescriptImg/haze.jpg'),
-          'rain shower': require('../assets/DescriptImg/rain shower.jpg'),
-          'light rain': require('../assets/DescriptImg/light rain.jpg'),
-          'moderate rain': require('../assets/DescriptImg/moderate rain.jpg'),
-          'heavy rain': require('../assets/DescriptImg/heavy rain.jpg'),
-          'drizzle': require('../assets/DescriptImg/drizzle.jpg'),
-          'snowfall': require('../assets/DescriptImg/snowfall.jpg'),
-          'heavy snow': require('../assets/DescriptImg/heavy snow.jpg'),
-          'blizzard': require('../assets/DescriptImg/blizzard.jpg'),
-          'thunderstorm': require('../assets/DescriptImg/thunderstorm.jpg'),
+          'blizzard': require('../assets/DescriptImg/blizzard.gif'),
+          'broken clouds': require('../assets/DescriptImg/broken clouds.gif'),
+          'clear sky': require('../assets/DescriptImg/clear sky.gif'),
+          'drizzle': require('../assets/DescriptImg/drizzle.gif'),
+          'dust whirls': require('../assets/DescriptImg/dust whirls.gif'),
+          'few clouds': require('../assets/DescriptImg/few clouds.gif'),
+          'broken clouds': require('../assets/DescriptImg/broken clouds.gif'),
+          'fog': require('../assets/DescriptImg/fog.gif'),
+          'haze': require('../assets/DescriptImg/haze.gif'),
+          'heavy rain': require('../assets/DescriptImg/heavy rain.gif'),
+          'heavy snow': require('../assets/DescriptImg/heavy snow.gif'),
+          'light rain': require('../assets/DescriptImg/light rain.gif'),
+          'mist': require('../assets/DescriptImg/mist.gif'),
+          'moderate rain': require('../assets/DescriptImg/moderate rain.gif'),
+          'overcast clouds': require('../assets/DescriptImg/overcast clouds.gif'),
+          'rain-night': require('../assets/DescriptImg/rain-night.gif'),
+          'rainy': require('../assets/DescriptImg/rainy.gif'),
+          'sand': require('../assets/DescriptImg/sand.gif'),
+          'scattered clouds': require('../assets/DescriptImg/scattered clouds.gif'),
+          'shower rain': require('../assets/DescriptImg/shower rain.gif'),
+          'sleet': require('../assets/DescriptImg/sleet.gif'),
+          'smoke': require('../assets/DescriptImg/smoke.gif'),
+          'snow': require('../assets/DescriptImg/snow.gif'),
+          'snowfall': require('../assets/DescriptImg/snowfall.gif'),
+          'thunderstorm': require('../assets/DescriptImg/thunderstorm.gif'),
+          'tornado': require('../assets/DescriptImg/tornado.gif'),
           
         // Add more mappings for other weather descriptions
       };
-      const matchingImage = imageMap[description];
-      if (matchingImage) {
-        setBackgroundImage(matchingImage);
+      const matchingGif = gifMap[description];
+      if (matchingGif) {
+        setBackgroundImage(matchingGif);
       } else {
         // Handle cases where there's no matching img
         setBackgroundImage(require('../assets/images/Background.jpg')); // Use a default image
