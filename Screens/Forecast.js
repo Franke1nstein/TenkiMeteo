@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
   forecastContainer: {
     flex: 1,
     padding: 20,
+    backgroundColor: '#00ffff', 
   },
   loader: {
     marginTop: 20,
@@ -91,7 +92,7 @@ const styles = StyleSheet.create({
   },
   forecastItem: {
     borderWidth: 1,
-    borderColor: '#ddd',
+    borderColor: 'black',
     borderRadius: 10,
     padding: 10,
     marginBottom: 10,

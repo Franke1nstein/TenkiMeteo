@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: 'center', // Resize to cover container
     width : '100%',
-    marginTop : 20,
+    marginTop : 10,
   },
   searchBarContainer: {
     flexDirection: 'row',
@@ -185,12 +185,12 @@ const styles = StyleSheet.create({
     
     backgroundColor: '#00ffff', 
     borderRadius: 10,
-    padding: 20,
-    marginBottom: 20,
+    padding: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 4,
+    justifyContent: 'flex-start',
     
   },
   cityText: {
@@ -199,6 +199,7 @@ const styles = StyleSheet.create({
   },
   temperatureText: {
     fontSize: 30,
+    color: 'red',
   },
   descriptionText: {
     fontSize: 25,

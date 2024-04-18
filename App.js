@@ -20,7 +20,7 @@ function App() {
           options={{
             tabBarLabel: 'Home',
             tabBarIcon: ({ color }) => (
-              <MaterialCommunityIcons name="home" color={color} size={24} />
+              <MaterialCommunityIcons name="home" color={color} size={20} />
             ),
           }}
         />
@@ -30,7 +30,7 @@ function App() {
           options={{
             tabBarLabel: 'Current Weather',
             tabBarIcon: ({ color }) => (
-              <MaterialCommunityIcons name="weather-sunny" color={color} size={24} />
+              <MaterialCommunityIcons name="weather-sunny" color={color} size={20} />
             ),
           }}
         />
@@ -40,7 +40,7 @@ function App() {
           options={{
             tabBarLabel: 'Forecast',
             tabBarIcon: ({ color }) => (
-              <MaterialCommunityIcons name="calendar-range" color={color} size={24} />
+              <MaterialCommunityIcons name="calendar-range" color={color} size={20} />
             ),
           }}
         />
